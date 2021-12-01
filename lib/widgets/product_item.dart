@@ -53,8 +53,14 @@ class ProductItem extends StatelessWidget {
           trailing: IconButton(
             onPressed: () {
               cart.addItem(product.id, product.price, product.title);
+              product.toggleAddedToCart();
             },
-            icon: const Icon(Icons.shopping_cart),
+            icon: product.isAddedToCart
+                ? const Icon(
+                    Icons.shopping_cart,
+                    color: Colors.red,
+                  )
+                : const Icon(Icons.shopping_cart),
           ),
         ),
       ),
