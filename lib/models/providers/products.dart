@@ -7,11 +7,11 @@ class Products with ChangeNotifier {
   final List<Product> _items = [
     Product(
       id: 'p1',
-      title: 'Red Shirt',
-      description: 'A red shirt - it is pretty red!',
+      title: 'Levi\'s Shirt',
+      description: 'A colorful shirt!',
       price: 29.99,
       imageURL:
-          'https://cdn.pixabay.com/photo/2016/10/02/22/17/red-t-shirt-1710578_1280.jpg',
+          'https://cdn.aboutstatic.com/file/38dbc7b304cadb1c226e4fcce466cf0c?width=400&quality=75&bg=F4F4F5',
     ),
     Product(
       id: 'p2',
@@ -19,7 +19,7 @@ class Products with ChangeNotifier {
       description: 'A nice pair of trousers.',
       price: 59.99,
       imageURL:
-          'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Trousers%2C_dress_%28AM_1960.022-8%29.jpg/512px-Trousers%2C_dress_%28AM_1960.022-8%29.jpg',
+          'https://www.lochcarron.co.uk/media/catalog/product/cache/1/image/6394c83a75c69a6a4e83af5187d85618/t/g/tggtrr-custom-mens-reiver-tartan-trousers1-front-72dpi-rgb_1.jpg',
     ),
     Product(
       id: 'p3',
