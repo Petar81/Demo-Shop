@@ -38,7 +38,7 @@ class ProductItem extends StatelessWidget {
             icon: product.isFavorite
                 ? const Icon(
                     Icons.favorite,
-                    color: Colors.red,
+                    color: Colors.cyanAccent,
                   )
                 : const Icon(Icons.favorite_border),
             onPressed: () {
@@ -58,7 +58,7 @@ class ProductItem extends StatelessWidget {
             icon: product.isAddedToCart
                 ? const Icon(
                     Icons.shopping_cart,
-                    color: Colors.red,
+                    color: Colors.greenAccent,
                   )
                 : const Icon(Icons.shopping_cart),
           ),
