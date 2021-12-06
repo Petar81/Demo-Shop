@@ -55,13 +55,19 @@ class ProductItem extends StatelessWidget {
               cart.addItem(product.id, product.price, product.title);
               product.toggleAddedToCart();
               // ignore: deprecated_member_use
+              Scaffold.of(context).hideCurrentSnackBar();
+              // ignore: deprecated_member_use
               Scaffold.of(context).showSnackBar(
                 SnackBar(
                   content: const Text(
                     'Added item to cart!',
                   ),
                   duration: const Duration(seconds: 2),
-                  action: SnackBarAction(label: 'UNDO', onPressed: () {}),
+                  action: SnackBarAction(
+                      label: 'UNDO',
+                      onPressed: () {
+                        cart.removeItem(product.id);
+                      }),
                 ),
               );
             },
