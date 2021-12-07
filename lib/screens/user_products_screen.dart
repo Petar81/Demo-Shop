@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../models/providers/products.dart';
+import '../widgets/user_product_item.dart';
 
 class UserProductsScreen extends StatelessWidget {
+  static const routeName = '/user-products';
   const UserProductsScreen({Key? key}) : super(key: key);
 
   @override
@@ -22,7 +24,8 @@ class UserProductsScreen extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(8),
         child: ListView.builder(
-          itemBuilder: (ctx, i) => const SizedBox(),
+          itemBuilder: (ctx, i) => UserProductItem(
+              productsData.items[i].title, productsData.items[i].imageURL),
           itemCount: productsData.items.length,
         ),
       ),
