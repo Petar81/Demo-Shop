@@ -13,17 +13,20 @@ class UserProductItem extends StatelessWidget {
       leading: CircleAvatar(
         backgroundImage: NetworkImage(imageURL),
       ),
-      trailing: Row(
-        children: <Widget>[
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.edit),
-          ),
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.delete),
-          ),
-        ],
+      trailing: SizedBox(
+        width: 100,
+        child: Row(
+          children: <Widget>[
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.edit),
+            ),
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.delete),
+            ),
+          ],
+        ),
       ),
     );
   }
