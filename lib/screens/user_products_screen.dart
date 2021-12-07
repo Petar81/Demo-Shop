@@ -1,3 +1,4 @@
+import 'package:demo_shop/widgets/app_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -21,6 +22,7 @@ class UserProductsScreen extends StatelessWidget {
           ),
         ],
       ),
+      drawer: const AppDrawer(),
       body: Padding(
         padding: const EdgeInsets.all(8),
         child: ListView.builder(
