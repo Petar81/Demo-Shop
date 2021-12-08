@@ -30,6 +30,11 @@ class _EditProductScreenState extends State<EditProductScreen> {
                   textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.number,
                 ),
+                TextFormField(
+                  decoration: const InputDecoration(labelText: 'Description'),
+                  maxLines: 3,
+                  keyboardType: TextInputType.multiline,
+                ),
               ],
             ),
           ),
