@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../models/providers/product.dart';
+
 class EditProductScreen extends StatefulWidget {
   static const routeName = '/edit-product';
   const EditProductScreen({Key? key}) : super(key: key);
@@ -12,6 +14,8 @@ class _EditProductScreenState extends State<EditProductScreen> {
   final _imageUrlController = TextEditingController();
   final _imageUrlFocusNode = FocusNode();
   final _form = GlobalKey<FormState>();
+  var _editedProduct =
+      Product(id: '', title: '', price: 0, description: '', imageURL: '');
 
   @override
   void initState() {
@@ -34,7 +38,9 @@ class _EditProductScreenState extends State<EditProductScreen> {
     }
   }
 
-  void _saveForm() {}
+  void _saveForm() {
+    _form.currentState!.save();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,16 +64,43 @@ class _EditProductScreenState extends State<EditProductScreen> {
                 TextFormField(
                   decoration: const InputDecoration(labelText: 'Title'),
                   textInputAction: TextInputAction.next,
+                  onSaved: (value) {
+                    _editedProduct = Product(
+                      id: _editedProduct.id,
+                      description: _editedProduct.description,
+                      imageURL: _editedProduct.imageURL,
+                      price: _editedProduct.price,
+                      title: value!,
+                    );
+                  },
                 ),
                 TextFormField(
                   decoration: const InputDecoration(labelText: 'Price'),
                   textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.number,
+                  onSaved: (value) {
+                    _editedProduct = Product(
+                      id: _editedProduct.id,
+                      description: _editedProduct.description,
+                      imageURL: _editedProduct.imageURL,
+                      price: double.parse(value!),
+                      title: _editedProduct.title,
+                    );
+                  },
                 ),
                 TextFormField(
                   decoration: const InputDecoration(labelText: 'Description'),
                   maxLines: 3,
                   keyboardType: TextInputType.multiline,
+                  onSaved: (value) {
+                    _editedProduct = Product(
+                      id: _editedProduct.id,
+                      description: value!,
+                      imageURL: _editedProduct.imageURL,
+                      price: _editedProduct.price,
+                      title: _editedProduct.title,
+                    );
+                  },
                 ),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.end,
@@ -102,6 +135,15 @@ class _EditProductScreenState extends State<EditProductScreen> {
                         textInputAction: TextInputAction.done,
                         controller: _imageUrlController,
                         focusNode: _imageUrlFocusNode,
+                        onSaved: (value) {
+                          _editedProduct = Product(
+                            id: _editedProduct.id,
+                            description: _editedProduct.description,
+                            imageURL: value!,
+                            price: _editedProduct.price,
+                            title: _editedProduct.title,
+                          );
+                        },
                         onFieldSubmitted: (_) {
                           _saveForm();
                         },
