@@ -9,6 +9,14 @@ class EditProductScreen extends StatefulWidget {
 }
 
 class _EditProductScreenState extends State<EditProductScreen> {
+  final _imageUrlController = TextEditingController();
+
+  @override
+  void dispose() {
+    super.dispose();
+    _imageUrlController.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
