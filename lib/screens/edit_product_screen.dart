@@ -44,6 +44,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
                   keyboardType: TextInputType.multiline,
                 ),
                 Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
                   children: <Widget>[
                     Container(
                       width: 100,
@@ -58,12 +59,23 @@ class _EditProductScreenState extends State<EditProductScreen> {
                           color: Colors.grey,
                         ),
                       ),
-                      child: Container(),
+                      child: _imageUrlController.text.isEmpty
+                          ? const Text('Enter a URL')
+                          : FittedBox(
+                              child: Image.network(
+                                _imageUrlController.text,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
                     ),
-                    TextFormField(
-                      decoration: const InputDecoration(labelText: 'Image URL'),
-                      keyboardType: TextInputType.url,
-                      textInputAction: TextInputAction.done,
+                    Expanded(
+                      child: TextFormField(
+                        decoration:
+                            const InputDecoration(labelText: 'Image URL'),
+                        keyboardType: TextInputType.url,
+                        textInputAction: TextInputAction.done,
+                        controller: _imageUrlController,
+                      ),
                     ),
                   ],
                 ),
