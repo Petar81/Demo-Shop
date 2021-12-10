@@ -33,11 +33,19 @@ class _EditProductScreenState extends State<EditProductScreen> {
     }
   }
 
+  void _saveForm() {}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Edit Product'),
+        actions: <Widget>[
+          IconButton(
+            onPressed: _saveForm,
+            icon: const Icon(Icons.save),
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
@@ -92,6 +100,9 @@ class _EditProductScreenState extends State<EditProductScreen> {
                         textInputAction: TextInputAction.done,
                         controller: _imageUrlController,
                         focusNode: _imageUrlFocusNode,
+                        onFieldSubmitted: (_) {
+                          _saveForm();
+                        },
                         onEditingComplete: () {
                           setState(() {});
                         },
