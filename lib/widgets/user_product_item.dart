@@ -5,7 +5,7 @@ import '../screens/edit_product_screen.dart';
 class UserProductItem extends StatelessWidget {
   final String title;
   final String imageURL;
-  final id;
+  final String id;
   const UserProductItem(this.title, this.imageURL, this.id, {Key? key})
       : super(key: key);
 

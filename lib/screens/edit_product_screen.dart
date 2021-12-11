@@ -18,6 +18,12 @@ class _EditProductScreenState extends State<EditProductScreen> {
   final _form = GlobalKey<FormState>();
   var _editedProduct =
       Product(id: '', title: '', price: 0, description: '', imageURL: '');
+  var _initValues = {
+    'title': '',
+    'decription': '',
+    'price': '',
+    'imageURL': ''
+  };
   var _isInit = true;
 
   @override
@@ -47,9 +53,20 @@ class _EditProductScreenState extends State<EditProductScreen> {
     super.didChangeDependencies();
     if (_isInit) {
       final productId = ModalRoute.of(context)!.settings.arguments as String;
-      final product =
-          Provider.of<Products>(context, listen: false).findById(productId);
-      _editedProduct = product;
+      // ignore: unnecessary_null_comparison
+      if (productId != null) {
+        final product =
+            Provider.of<Products>(context, listen: false).findById(productId);
+        _editedProduct = product;
+        _initValues = {
+          'title': _editedProduct.title,
+          'description': _editedProduct.description,
+          'price': _editedProduct.price.toString(),
+          // 'imageURL': _editedProduct.imageURL,
+          'imageURL': '',
+        };
+        _imageUrlController.text = _editedProduct.imageURL;
+      }
     }
     _isInit = false;
   }
@@ -84,6 +101,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
             child: Column(
               children: <Widget>[
                 TextFormField(
+                  initialValue: _initValues['title'],
                   decoration: const InputDecoration(labelText: 'Title'),
                   textInputAction: TextInputAction.next,
                   validator: (value) {
@@ -103,6 +121,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
                   },
                 ),
                 TextFormField(
+                  initialValue: _initValues['price'],
                   decoration: const InputDecoration(labelText: 'Price'),
                   textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.number,
@@ -129,6 +148,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
                   },
                 ),
                 TextFormField(
+                  initialValue: _initValues['description'],
                   decoration: const InputDecoration(labelText: 'Description'),
                   maxLines: 3,
                   keyboardType: TextInputType.multiline,
@@ -178,6 +198,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
                     ),
                     Expanded(
                       child: TextFormField(
+                        //initialValue: _initValues['imageURL'],
                         decoration:
                             const InputDecoration(labelText: 'Image URL'),
                         keyboardType: TextInputType.url,
