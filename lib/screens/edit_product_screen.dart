@@ -18,6 +18,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
   final _form = GlobalKey<FormState>();
   var _editedProduct =
       Product(id: '', title: '', price: 0, description: '', imageURL: '');
+  var _isInit = true;
 
   @override
   void initState() {
@@ -39,6 +40,18 @@ class _EditProductScreenState extends State<EditProductScreen> {
       return;
     }
     setState(() {});
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (_isInit) {
+      final productId = ModalRoute.of(context)!.settings.arguments as String;
+      final product =
+          Provider.of<Products>(context, listen: false).findById(productId);
+      _editedProduct = product;
+    }
+    _isInit = false;
   }
 
   void _saveForm() {
