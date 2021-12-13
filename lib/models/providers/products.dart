@@ -56,22 +56,25 @@ class Products with ChangeNotifier {
   void addProduct(Product product) {
     final url = Uri.parse(
         'https://fir-shop-5d545-default-rtdb.europe-west1.firebasedatabase.app/products.json');
-    http.post(url,
-        body: json.encode({
-          'title': product.title,
-          'description': product.description,
-          'imageURL': product.imageURL,
-          'price': product.price,
-          'isFavorite': product.isFavorite,
-        }));
-    final newProduct = Product(
-        id: DateTime.now().toString(),
-        description: product.description,
-        imageURL: product.imageURL,
-        price: product.price,
-        title: product.title);
-    _items.add(newProduct);
-    notifyListeners();
+    http
+        .post(url,
+            body: json.encode({
+              'title': product.title,
+              'description': product.description,
+              'imageURL': product.imageURL,
+              'price': product.price,
+              'isFavorite': product.isFavorite,
+            }))
+        .then((response) {
+      final newProduct = Product(
+          id: json.decode(response.body)['name'],
+          description: product.description,
+          imageURL: product.imageURL,
+          price: product.price,
+          title: product.title);
+      _items.add(newProduct);
+      notifyListeners();
+    });
   }
 
   void updateProduct(String id, Product newProduct) {
