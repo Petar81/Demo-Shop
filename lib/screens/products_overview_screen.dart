@@ -23,7 +23,7 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
   @override
   void initState() {
     super.initState();
-    Provider.of<Products>(context).fetchAndSetProducts();
+    Provider.of<Products>(context, listen: false).fetchAndSetProducts();
   }
 
   @override
