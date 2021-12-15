@@ -25,7 +25,7 @@ class AppDrawer extends StatelessWidget {
           ),
           const Divider(),
           ListTile(
-            leading: const Icon(Icons.payment),
+            leading: const Icon(Icons.shopping_cart),
             title: const Text('Orders'),
             onTap: () {
               Navigator.of(context)
@@ -33,9 +33,15 @@ class AppDrawer extends StatelessWidget {
             },
           ),
           const Divider(),
+          const Padding(
+            padding: EdgeInsets.symmetric(vertical: 30),
+            child: Center(
+              child: Text('Settings'),
+            ),
+          ),
           ListTile(
-            leading: const Icon(Icons.settings),
-            title: const Text('My Products'),
+            leading: const Icon(Icons.calculate_outlined),
+            title: const Text('Manage Stock'),
             onTap: () {
               Navigator.of(context)
                   .pushReplacementNamed(UserProductsScreen.routeName);
