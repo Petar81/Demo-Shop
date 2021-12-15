@@ -104,9 +104,18 @@ class Products with ChangeNotifier {
     });
   }
 
-  void updateProduct(String id, Product newProduct) {
+  Future<void> updateProduct(String id, Product newProduct) async {
     final prodInedx = _items.indexWhere((prod) => prod.id == id);
     if (prodInedx >= 0) {
+      final url = Uri.parse(
+          'https://fir-shop-5d545-default-rtdb.europe-west1.firebasedatabase.app/products/$id.json');
+      await http.patch(url,
+          body: json.encode({
+            'title': newProduct.title,
+            'description': newProduct.description,
+            'price': newProduct.price,
+            'imageURL': newProduct.imageURL,
+          }));
       _items[prodInedx] = newProduct;
       notifyListeners();
     }
