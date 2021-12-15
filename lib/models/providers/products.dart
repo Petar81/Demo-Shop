@@ -124,7 +124,7 @@ class Products with ChangeNotifier {
 
   Future<void> deleteProduct(String id) async {
     final url = Uri.parse(
-        'https://fir-shop-5d545-default-rtdb.europe-west1.firebasedatabase.app/products/$id');
+        'https://fir-shop-5d545-default-rtdb.europe-west1.firebasedatabase.app/products/$id.json');
     final existingProductIndex = _items.indexWhere((prod) => prod.id == id);
     Product? existingProduct = _items[existingProductIndex];
     _items.removeAt(existingProductIndex);
