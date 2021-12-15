@@ -1,4 +1,6 @@
 import 'package:flutter/cupertino.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
 class Product with ChangeNotifier {
   final String id;
@@ -19,9 +21,25 @@ class Product with ChangeNotifier {
     required this.title,
   });
 
-  void toggleFavoriteStatus() {
+  Future<void> toggleFavoriteStatus() async {
+    final oldStatus = isFavorite;
     isFavorite = !isFavorite;
     notifyListeners();
+    final url = Uri.parse(
+        'https://fir-shop-5d545-default-rtdb.europe-west1.firebasedatabase.app/products/$id.json');
+    try {
+      final response = await http.patch(url,
+          body: json.encode({
+            'isFavorite': isFavorite,
+          }));
+      if (response.statusCode >= 400) {
+        isFavorite = oldStatus;
+        notifyListeners();
+      }
+    } catch (error) {
+      isFavorite = oldStatus;
+      notifyListeners();
+    }
   }
 
   void toggleAddedToCart() {
