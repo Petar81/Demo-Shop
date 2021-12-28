@@ -63,6 +63,8 @@ class Products with ChangeNotifier {
       if (extractedData == null) {
         return;
       }
+      // print("CHECK EXTRACETED DATA BELOW");
+      // print(extractedData);
       final List<Product> loadedProducts = [];
       extractedData.forEach((prodID, prodData) {
         loadedProducts.add(
